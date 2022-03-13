@@ -34,18 +34,18 @@
             <div class="cards">
                 <div class="card card-center">
                     <div class="card-body">
-                        <h1>Nueva leyenda</h1>
+                     <h1 >Nueva leyenda</h1>
 
-                        <form action="">
-                            <label for="title" class="field-label">Título: </label>
-                            <input type="text" name="title" id="title" class="field-input">
+                        <form action="/leyends"  method="POST">
+                            <label for="name" class="field-label">Título: </label>
+                            <input type="text" name="name" id="name" class="field-input">
                             
-                            <label for="title" class="field-label">URL de la imagen de refrencia: </label>
-                            <input type="text" name="title" id="title" class="field-input">
+                            <label for="image_url" class="field-label">URL de la imagen de refrencia: </label>
+                            <input type="text" name="image_url" id="image_url" class="field-input">
 
-                            <label for="title" class="field-label">Provincia de origen: </label>
-                            <select size="1" name="select" class="field-input">
-                                <option value="SanJose">San José</option>
+                            <label for="location" class="field-label">Provincia de origen: </label>
+                            <select size="1" name="location" id="location" class="field-input">
+                                <option value="SanJose" selected>San José</option>
                                 <option value="Alajuela">Alajuela</option>
                                 <option value="Cartago">Cartago</option>                                
                                 <option value="Heredia">Heredia</option>                              
@@ -54,10 +54,10 @@
                                 <option value="Limon">Limón</option>
                             </select>
 
-                            <label for="content" class="field-label">Descripción:</label>
-                            <textarea name="content" id="content" rows="10" class="field-textarea"></textarea>
+                            <label for="description" class="field-label">Descripción:</label>
+                            <textarea name="description" id="description" rows="10" class="field-textarea"></textarea>
 
-                            <button type="submit" class="btn btn-primary">Crear leyenda</button>
+                            <button type="submit" class="btn btn-primary">Crear</button>
                         </form>
                     </div>
                 </div>

@@ -35,7 +35,7 @@
                     <div class="card-body">
                         <h4>Filtros</h4>
 
-                        <form action="">
+                        <form action="/leyends/filter" method="POST">
                             <label for="title" class="field-label">Título: </label>
                             <select size="1" name="select" class="field-input">
                                 <option value="ascendente">Ascendente (Z-A)</option>
@@ -43,55 +43,65 @@
                             </select>
                         
                             <label for="title" class="field-label">Provincia de origen: </label>
-                            <select size="1" name="select" class="field-input">
-                                <option value="Todos" active>Todos</option>
-                                <option value="SanJose">San José</option>
-                                <option value="Alajuela">Alajuela</option>
-                                <option value="Cartago">Cartago</option>                                
-                                <option value="Heredia">Heredia</option>                              
-                                <option value="Guanacaste">Guanacaste</option>
-                                <option value="Puntarenas">Puntarenas</option>
-                                <option value="Limon">Limón</option>
+                            <select size="1" name="selectfilter" id="selectfilter"class="field-input">
+                                <option value="0" selected>Todos</option>
+                                <option value="1">Limón</option>
+                                <option value="2">San José</option>
+                                <option value="3">Alajuela</option>
+                                <option value="4">Cartago</option>                                
+                                <option value="5">Heredia</option>    
+                                <option value="6">Puntarenas</option>                          
+                                <option value="7">Guanacaste</option>
                             </select>
 
-                            <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+                            <a href="/leyends/filter" class="button btn btn-primary">Aplicar Filtros</a>
                         </form>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" id="leyend-titles">
                         <h4>Leyendas</h4>
-                        <pre>Título de una leyenda.</pre>
-                        <pre>Título de una leyenda.</pre>
-                        <pre>Título de una leyenda.</pre>
-                        <pre>Título de una leyenda.</pre>
-                        <pre>Título de una leyenda.</pre>
-                        <pre>Título de una leyenda.</pre>
+                        <div> 
+                            <ol> 
+                                @foreach ($leyends as $leyend)
+                                    <li><a href="/leyend/{{$leyend->id}}"><pre>{{$leyend['name']}}</pre><a></li>
+                                @endforeach
+                            </ol>
+                        </div>
                     </div>
                 </div>
                 <div class="card card-big">
                     <div class="card-body">
-                        <h4>Detalle de la Leyenda: Nombre</h4>
+                        <h4>Detalle de la Leyenda: {{$leyends[0]['name']}}</h4>
 
-                        <p>Es el fantasma de una carreta que deambula por las noches las callejuelas de alguna ciudad, 
-                            con el yugo alto y vacío, sin bueyes que la conduzcan ni boyero que la dirija.<p>
+                        <div id="ship">
+                            <p>Provincia de origen:</p>
+                                @if ($leyends[0]['location'] === 1)
+                                        <p class="ship-blue">Limón</p>
+                                @elseif ($leyends[0]['location'] === 2)
+                                        <p class="ship-purple">San José</p>
+                                @elseif ($leyends[0]['location'] === 3)
+                                        <p class="ship-red">Alajuela</p>
+                                @elseif ($leyends[0]['location'] === 4)
+                                        <p class="ship-periwinkle">Cartago</p>
+                                @elseif ($leyends[0]['location'] === 5)
+                                        <p class="ship-yellow">Heredia</p>
+                                @elseif ($leyends[0]['location'] === 6)
+                                        <p class="ship-orange">Puntarenas</p>
+                                @elseif ($leyends[0]['location'] === 7)
+                                        <p class="ship-green">Guanacaste</p>
+                                @endif
+                            </div> 
 
-                        <p>Provincia de origen:</p>
-
-                        <pre id="ship">
-                                    <p class="ship-blue">Limón</p>
-                                    <p class="ship-purple">San José</p>
-                                    <p class="ship-red">Alajuela</p>
-                                    <p class="ship-periwinkle">Cartago</p>
-                                    <p class="ship-yellow">Heredia</p>
-                                    <p class="ship-orange">Puntarenas</p>
-                                    <p class="ship-green">Guanacaste</p>
-                        </pre> 
+                        <p>{{$leyends[0]['description']}}<p>
                     </div>
 
                     <footer class="card-footer">
-                        <a class="action-link action-edit">
+                        <a href="/leyend/{{$leyends[0]['id']}}/edit" class="action-link action-edit">
                             <i class="icon icon-pen"></i>
+                        </a>
+                        <a class="action-link action-delete">
+                            <i class="icon icon-trash"></i>
                         </a>
                     </footer>
                 </div>

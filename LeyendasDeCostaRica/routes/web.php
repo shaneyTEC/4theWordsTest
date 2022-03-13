@@ -17,37 +17,38 @@ use Illuminate\Support\Facades\Route;
 **** Static Routes ****
 **********************/
 
-//leyend
-
-// go to homepage
+// go to homepage example
 Route::get('/', function () {
     return view('leyends');
 });
 
 //display leyends list
-Route::get('/leyends', function () {
-    return view('leyends');
-});
+Route::get('/leyends', 'App\Http\Controllers\LeyendController@index');
 
-//Add a new leyend
-Route::get('/leyend/add', function () {
-    return view('add-leyend');
-});
+//display leyends list Filter
+Route::get('/leyends/filter', 'App\Http\Controllers\LeyendController@indexFilterbyProvince');
 
-//Location
+//display locations list
+Route::get('/locations', 'App\Http\Controllers\LocationController@index');
 
+
+/**********************
+********* Post ********
+***********************/
+
+//Add a create leyend
+Route::post('/leyends', 'App\Http\Controllers\LeyendController@create');
+
+//Add a display leyend form
+Route::get('/leyend/add', 'App\Http\Controllers\LeyendController@add');
 
 /***********************
 **** Dynamic routes ****
 ***********************/
 
 //Edit a leyend
-Route::get('/leyend/{id}/edit', function () {
-    return view('add-leyend/{id}');
-});
+Route::get('/leyend/{id}/edit', 'App\Http\Controllers\LeyendController@edit')->where('id', '[0-9]+');
 
 //display leyend details 
-Route::get('leyend/{id}', function ($id) {
-    return "Leyend detail: {$id}";
-})->where('id', '[0-9]+');
+Route::get('/leyend/{id}', 'App\Http\Controllers\LeyendController@show')->where('id', '[0-9]+');
 
