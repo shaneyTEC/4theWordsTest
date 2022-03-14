@@ -123,7 +123,8 @@
                             <a href="/leyend/{{$leyend['id']}}/edit" class="action-link action-edit">
                                 <i class="icon icon-pen"></i>
                             </a>
-                            <a class="action-link action-delete">
+                            <a href="/leyend/{{$leyend['id']}}/delete"
+                            class="action-link action-delete">
                                 <i class="icon icon-trash"></i>
                             </a>
                     </footer>

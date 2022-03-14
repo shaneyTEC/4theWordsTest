@@ -25,7 +25,9 @@ class LeyendController extends Controller
 
     //display leyends list filter
     public function indexFilterbyProvince($id){
-        $leyends = leyend::all()->where('location', '=', $id);
+        $leyends = leyend::all()
+            ->where('location', '=', $id);
+
         $locations = location::all();
         return view('leyends', ['leyends' => $leyends,], ['locations' => $locations,]);
     }
@@ -35,6 +37,7 @@ class LeyendController extends Controller
         $locations = location::all();
         return view('add-leyend', ['locations' => $locations,]);
     }
+    
     public function store(Request $request){        
         $query = DB::table('leyends')->insert([
             'name' => request('name'),
@@ -43,16 +46,17 @@ class LeyendController extends Controller
             'description' => request('description'),
         ]);
         if($query){
-            //return redirect('/');
-        }
-        
+            return redirect('/');
+        }  
     }
 
-    public function destroy(Post $post)
-    {
-        $post->delete();
-    
-        return redirect()->route('/');
+    public function delete($id){
+        $query = DB::table('leyends')
+            ->where('id', $id)
+            ->delete();
+        if($query){
+            return redirect('/');
+        }
     }
 
     // Update specific leyend 

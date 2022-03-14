@@ -39,6 +39,9 @@ Route::post('/leyends', 'App\Http\Controllers\LeyendController@store');
 //Add a display leyend form
 Route::get('/leyend/add', 'App\Http\Controllers\LeyendController@add');
 
+//Add a create leyend
+Route::get('/leyend/{id}/delete', 'App\Http\Controllers\LeyendController@delete');
+
 /***********************
 **** Dynamic routes ****
 ***********************/
