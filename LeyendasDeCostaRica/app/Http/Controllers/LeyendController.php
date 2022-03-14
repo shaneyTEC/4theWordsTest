@@ -41,7 +41,6 @@ class LeyendController extends Controller
         $leyend->image_url = request('image_url');
         $leyend->location = request('location');
         $leyend->description = request('description');
-        error_log(Request::input('name'));
         return redirect('/');
     }
 
