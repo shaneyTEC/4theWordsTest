@@ -26,9 +26,6 @@ Route::get('/leyends', 'App\Http\Controllers\LeyendController@index');
 //display locations list
 Route::get('/locations', 'App\Http\Controllers\LocationController@index');
 
-//display leyends list Filter
-Route::get('/leyend/{id}/filter', 'App\Http\Controllers\LeyendController@indexFilterbyProvince');
-
 /**********************
 ********* Post ********
 ***********************/
@@ -36,17 +33,24 @@ Route::get('/leyend/{id}/filter', 'App\Http\Controllers\LeyendController@indexFi
 //Add a create leyend
 Route::post('/leyends', 'App\Http\Controllers\LeyendController@store');
 
-//Add a display leyend form
+//Display leyend form to create new leyend
 Route::get('/leyend/add', 'App\Http\Controllers\LeyendController@add');
 
-//Add a create leyend
-Route::get('/leyend/{id}/delete', 'App\Http\Controllers\LeyendController@delete');
+//Save a edit leyend
+Route::post('/leyend/edit', 'App\Http\Controllers\LeyendController@update');
+
 
 /***********************
 **** Dynamic routes ****
 ***********************/
 
-//Edit a leyend
+//display leyends list Filter
+Route::get('/leyend/{id}/filter', 'App\Http\Controllers\LeyendController@indexFilterbyProvince')->where('id', '[0-9]+');
+
+//Add a create leyend
+Route::get('/leyend/{id}/delete', 'App\Http\Controllers\LeyendController@delete')->where('id', '[0-9]+');
+
+//Display leyend form to edit a leyend
 Route::get('/leyend/{id}/edit', 'App\Http\Controllers\LeyendController@edit')->where('id', '[0-9]+');
 
 //display leyend details 

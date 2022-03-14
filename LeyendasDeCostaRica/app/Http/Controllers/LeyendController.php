@@ -50,6 +50,7 @@ class LeyendController extends Controller
         }  
     }
 
+    // Delete specific leyend 
     public function delete($id){
         $query = DB::table('leyends')
             ->where('id', $id)
@@ -66,17 +67,16 @@ class LeyendController extends Controller
         return view('edit-leyend', ['leyend' => $leyend], ['locations' => $locations]);
     }
 
-    public function update(Request $request, Post $post)
-    {
-        $request->validate([
-            'name'=>'name',
-            'description'=>'required',
-            'location'=>'location',
-            'image_url'=>'image_url',
-        ]);
+    public function update(Request $request){   
+        $query = DB::table('leyends')
+            ->where('id', $request->input('id'))
+            ->update([
+                'name'=>$request -> input('name'),
+                'location'=>$request -> input('location'),
+                'image_url'=>$request -> input('image_url'),
+                'description'=>$request -> input('description')
+            ]);
     
-        $post->update($request->all());
-    
-        return redirect()->route('/');
+            return redirect('/');
     }
 }
