@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\leyend;
 use App\Models\location;
 class LeyendController extends Controller
@@ -31,17 +32,20 @@ class LeyendController extends Controller
 
     //Add a new leyend
     public function add(){
-        return view('add-leyend');
+        $locations = location::all();
+        return view('add-leyend', ['locations' => $locations,]);
     }
-
-    public function store(){
-
-        $leyend = new leyend();
-        $leyend->name = request('name');
-        $leyend->image_url = request('image_url');
-        $leyend->location = request('location');
-        $leyend->description = request('description');
-        return redirect('/');
+    public function store(Request $request){        
+        $query = DB::table('leyends')->insert([
+            'name' => request('name'),
+            'image_url' => request('image_url'),
+            'location' => request('location'),
+            'description' => request('description'),
+        ]);
+        if($query){
+            //return redirect('/');
+        }
+        
     }
 
     public function destroy(Post $post)
@@ -61,10 +65,10 @@ class LeyendController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'name' => 'name',
-            'description' => 'required',
-            'location' => 'location',
-            'image_url' => 'image_url',
+            'name'=>'name',
+            'description'=>'required',
+            'location'=>'location',
+            'image_url'=>'image_url',
         ]);
     
         $post->update($request->all());

@@ -41,7 +41,7 @@
                     <div class="card-body">
                      <h1 >Nueva leyenda</h1>
 
-                        <form action="/leyends"  method="POST">
+                        <form action="/leyends"  method="post">
                             @csrf
                             <label for="name" class="field-label">Título: </label>
                             <input type="text" name="name" id="name" class="field-input">
@@ -51,13 +51,9 @@
 
                             <label for="location" class="field-label">Provincia de origen: </label>
                             <select size="1" name="location" id="location" class="field-input">
-                                <option value="SanJose" selected>San José</option>
-                                <option value="Alajuela">Alajuela</option>
-                                <option value="Cartago">Cartago</option>                                
-                                <option value="Heredia">Heredia</option>                              
-                                <option value="Guanacaste">Guanacaste</option>
-                                <option value="Puntarenas">Puntarenas</option>
-                                <option value="Limon">Limón</option>
+                                @foreach ($locations as $location) 
+                                    <option value="{{$location->id}}">{{ $location->name }}</p>
+                                @endforeach
                             </select>
 
                             <label for="description" class="field-label">Descripción:</label>

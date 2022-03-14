@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <h1 >Actualizar leyenda</h1>
 
-                        <form action="/leyends">
+                        <form action="/leyends" method="POST">
                             @csrf
                             <label for="title" class="field-label">Título: </label>
                             <input type="text" name="title" id="title" class="field-input" value="{{$leyend->name}}" >

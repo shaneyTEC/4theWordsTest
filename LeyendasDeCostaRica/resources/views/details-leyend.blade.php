@@ -49,19 +49,19 @@
                             <label for="title" class="field-label">Provincia de origen: </label>
                             <select size="1" name="select" class="field-input" disabled>
                             @if ($leyend->location === 1)
-                            <option value="1">Limón</p>
+                            <option value="1">Limón</option>
                             @elseif ($leyend->location === 2)
-                                <option value="2">San José</p>
+                                <option value="2">San José</option>
                                 @elseif ($leyend->location === 3)
-                                <option value="3">Alajuela</p>
+                                <option value="3">Alajuela</option>
                                 @elseif ($leyend->location === 4)
-                                <option value="4">Cartago</p>
+                                <option value="4">Cartago</option>
                                 @elseif ($leyend->location === 5)
-                                <option value="5">Heredia</p>
+                                <option value="5">Heredia</option>
                                 @elseif ($leyend->location === 6)
-                                <option value="6">Puntarenas</p>
+                                <option value="6">Puntarenas</option>
                                 @elseif ($leyend->location === 7)
-                                <option value="7">Guanacaste</p>
+                                <option value="7">Guanacaste</option>
                                 @endif
                             </select>
 
