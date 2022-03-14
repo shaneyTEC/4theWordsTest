@@ -5,6 +5,32 @@ img {
     max-height: 50%;
 }
 
+#leyend-titles #list{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#leyend-titles #list img{
+  height: 270px;
+  max-width: 100%;
+  border-radius: calc(0.25rem - 1px);
+  vertical-align: middle;
+  border-style: none;
+  box-sizing: border-box;
+  margin-bottom: 4%;
+}
+
+#leyend-titles #list .description {
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-small{
+  width: 45%;
+}
 .logo {
     display: flex;
     align-items: center;
@@ -16,17 +42,6 @@ img {
 
 #leyend-titles{
    min-height: 50px;
-}
-#leyend-titles div{
-   /* Firefox */
-   height: -moz-calc(100% - 50px);
-   /* WebKit */
-   height: -webkit-calc(100% - 50px);
-   /* Opera */
-   height: -o-calc(100% - 50px);
-   /* Standard */
-   height: calc(100% - 50px); 
-   overflow-y:scroll;
 }
 
 #bottom-card div{
@@ -143,4 +158,47 @@ button, .button{
   .ship-orange:hover{
     background-color: #C28B51;
   }
+
+  #banner {
+    display: flex;
+    justify-content: center;
+}
+
+  #banner img{
+      max-width: 90%;
+      margin-top: 3%;
+      margin-bottom: 3%;
+  }
   
+  .hr-vertical{ 
+  
+    border:         none;
+    border-left:    1px solid hsl(200deg 2% 29%);
+    height:         3vh;
+    width:          1px;       
+}
+
+.main-nav-item{
+    display: flex;
+}
+
+.secondary-nav,
+.secondary-nav .main-nav-item{
+  background-color: transparent;
+}
+
+.secondary-nav .main-nav,
+.secondary-nav .main-nav-item,
+.secondary-nav .main-nav-list{
+  height: 44px;
+}
+
+.secondary-nav .main-nav-item{
+    align-items: center;
+}
+
+.secondary-nav .main-nav-link:hover, 
+.secondary-nav .active{
+  background-color: transparent;
+  border-bottom: 1px #EFB5D6 solid;
+}

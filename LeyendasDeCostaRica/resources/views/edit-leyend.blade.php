@@ -11,21 +11,26 @@
 
     <div class="wrap">
         <header class="head">
-            <a href="#" class="logo"> 
-                <img src="https://cdn-icons.flaticon.com/png/512/5482/premium/5482886.png?token=exp=1647163585~hmac=f886a8947cfd2ac3a65a3635b4127769"
-                 alt="Leyendas de Costa Rica">      
+            <a href="#" class="logo">      
             </a>
             <nav class="main-nav">
                 <ul class="main-nav-list">
-                    <li class="main-nav-item">
-                        <a href="/leyends"class="main-nav-link">
+                    <li class="main-nav-item active">
+                    <hr class="hr-vertical"/>
+                        <a href="/leyends" class="main-nav-link">
+                        <i class="icon icon-th-list"></i>
                             <span>Ver leyendas</span>
                         </a>
+                    <hr class="hr-vertical"/>
                     </li>
-                    <li class="main-nav-item active">
+                    <li class="main-nav-item">
+                    <hr class="hr-vertical"/>
                         <a href="/leyend/add" class="main-nav-link">
+                        <i class="icon icon-pen"></i>
                             <span>Agregar leyenda</span>
                         </a>
+                        
+                    <hr class="hr-vertical"/>
                     </li>
                 </ul>
             </nav>
@@ -36,7 +41,8 @@
                     <div class="card-body">
                         <h1 >Actualizar leyenda</h1>
 
-                        <form action=""  method="POST">
+                        <form action="/leyends">
+                            @csrf
                             <label for="title" class="field-label">Título: </label>
                             <input type="text" name="title" id="title" class="field-input" value="{{$leyend->name}}" >
                             
@@ -60,7 +66,6 @@
                             <textarea name="content" id="content" rows="10" class="field-textarea">{{$leyend->description}}</textarea>
 
                             <button type="submit" class="btn btn-primary">Actualizar</button>
-                            <button type="submit" class="btn btn-outline-danger">Eliminar</button>
                         
                         </form>
                     </div>

@@ -10,29 +10,23 @@ class LeyendController extends Controller
     //display leyends list
     public function index(){
         $leyends = leyend::all();
-
-        return view('leyends', [
-            'leyends' => $leyends,
-        ]);
+        $locations = location::all();
+        return view('leyends', ['leyends' => $leyends,], ['locations' => $locations,]);
     }
 
     //display specific leyend
     public function show($id){
+        $leyend = [];
         $leyend = leyend::find($id);
-        return view('details-leyend', ['leyend' => $leyend]);
+        $locations = location::all();
+        return view('details-leyend', ['leyend' => $leyend], ['locations' => $locations,]);
     }
 
     //display leyends list filter
-    public function indexFilterbyProvince(){
-        $valuef = Input::only('selectfilter');
-        if ($valuef == 0) {
-            return index();
-        }  else {
-            $leyends = leyend::all()->where('location', '=', 1);
-            return view('leyends', [
-                'leyends' => $leyends,
-            ]);
-        };
+    public function indexFilterbyProvince($id){
+        $leyends = leyend::all()->where('location', '=', $id);
+        $locations = location::all();
+        return view('leyends', ['leyends' => $leyends,], ['locations' => $locations,]);
     }
 
     //Add a new leyend
@@ -40,16 +34,22 @@ class LeyendController extends Controller
         return view('add-leyend');
     }
 
-    public function create(){
+    public function store(){
+
         $leyend = new leyend();
         $leyend->name = request('name');
         $leyend->image_url = request('image_url');
         $leyend->location = request('location');
         $leyend->description = request('description');
-
-        error_log($leyend);
-        error_log("entro");
+        error_log(Request::input('name'));
         return redirect('/');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+    
+        return redirect()->route('/');
     }
 
     // Update specific leyend 
@@ -57,5 +57,19 @@ class LeyendController extends Controller
         $leyend = leyend::find($id);
         $locations = location::all();
         return view('edit-leyend', ['leyend' => $leyend], ['locations' => $locations]);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $request->validate([
+            'name' => 'name',
+            'description' => 'required',
+            'location' => 'location',
+            'image_url' => 'image_url',
+        ]);
+    
+        $post->update($request->all());
+    
+        return redirect()->route('/');
     }
 }

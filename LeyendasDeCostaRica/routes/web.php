@@ -18,26 +18,23 @@ use Illuminate\Support\Facades\Route;
 **********************/
 
 // go to homepage example
-Route::get('/', function () {
-    return view('leyends');
-});
+Route::get('/', 'App\Http\Controllers\LeyendController@index');
 
 //display leyends list
 Route::get('/leyends', 'App\Http\Controllers\LeyendController@index');
 
-//display leyends list Filter
-Route::get('/leyends/filter', 'App\Http\Controllers\LeyendController@indexFilterbyProvince');
-
 //display locations list
 Route::get('/locations', 'App\Http\Controllers\LocationController@index');
 
+//display leyends list Filter
+Route::get('/leyend/{id}/filter', 'App\Http\Controllers\LeyendController@indexFilterbyProvince');
 
 /**********************
 ********* Post ********
 ***********************/
 
 //Add a create leyend
-Route::post('/leyends', 'App\Http\Controllers\LeyendController@create');
+Route::post('/leyends', 'App\Http\Controllers\LeyendController@store');
 
 //Add a display leyend form
 Route::get('/leyend/add', 'App\Http\Controllers\LeyendController@add');
@@ -51,4 +48,3 @@ Route::get('/leyend/{id}/edit', 'App\Http\Controllers\LeyendController@edit')->w
 
 //display leyend details 
 Route::get('/leyend/{id}', 'App\Http\Controllers\LeyendController@show')->where('id', '[0-9]+');
-
