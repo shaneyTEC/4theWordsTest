@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Leyenda</title>
+    <title>{{$leyend['name']}}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('scss/app.scss')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,7 @@
 <body>
 
     <div class="wrap">
+    <!-- START Top Nav / Header Block  -->
         <header class="head">
             <a href="#" class="logo">     
             </a>
@@ -35,38 +36,38 @@
                 </ul>
             </nav>
         </header>
+    <!-- END Top Nav / Header Block  -->
+    <!-- START See Leyend Details / Content Block -->
         <main class="content">
             <div class="cards">
                 <div class="card card-center">
                     <div class="card-body">
-                        <h1 >Detalles de la leyenda</h1>
+                        <h1 >Detalles de la leyenda "{{$leyend['name']}}"</h1>
 
                         <form action="">
                         <img src="{{$leyend['image_url']}}" class="card-img-top"/>
-                            <label for="title" class="field-label">Título: </label>
-                            <input type="text" name="title" id="title" class="field-input" value="{{$leyend->name}}" disabled>
-
-                            <label for="title" class="field-label">Provincia de origen: </label>
-                            <select size="1" name="select" class="field-input" disabled>
-                            @if ($leyend->location === 1)
-                            <option value="1">Limón</option>
-                            @elseif ($leyend->location === 2)
-                                <option value="2">San José</option>
-                                @elseif ($leyend->location === 3)
-                                <option value="3">Alajuela</option>
-                                @elseif ($leyend->location === 4)
-                                <option value="4">Cartago</option>
-                                @elseif ($leyend->location === 5)
-                                <option value="5">Heredia</option>
-                                @elseif ($leyend->location === 6)
-                                <option value="6">Puntarenas</option>
-                                @elseif ($leyend->location === 7)
-                                <option value="7">Guanacaste</option>
+                        <div id="list" > 
+                            <div id="ship">
+                                <p id="ship-title">Provincia de origen:</p>
+                                @if ($leyend['location'] === 1)
+                                    <p class="ship-blue">Limón</p>
+                                @elseif ($leyend['location'] === 2)
+                                    <p class="ship-purple">San José</p>
+                                @elseif ($leyend['location'] === 3)
+                                    <p class="ship-red">Alajuela</p>
+                                @elseif ($leyend['location'] === 4)
+                                    <p class="ship-periwinkle">Cartago</p>
+                                @elseif ($leyend['location'] === 5)
+                                    <p class="ship-yellow">Heredia</p>
+                                @elseif ($leyend['location'] === 6)
+                                    <p class="ship-orange">Puntarenas</p>
+                                @elseif ($leyend['location'] === 7)
+                                    <p class="ship-green">Guanacaste</p>
                                 @endif
-                            </select>
-
-                            <label for="content" class="field-label">Descripción:</label>
-                            <textarea name="content" id="content" rows="10" class="field-textarea" disabled>{{$leyend->description}}</textarea>
+                            </div> 
+                        </div> 
+                        <p id="ship-title">Provincia de origen:</p>
+                        <p>{{$leyend->description}}</p>
                         </form>
                         <a href="/leyend/{{$leyend->id}}/edit" class="button btn btn-primary">Editar leyenda</a>
                        
@@ -74,8 +75,7 @@
                 </div>
             </div>
         </main>
-        <footer class="foot">
-        </footer>
+    <!-- END See Leyend Details / Content Block -->
     </div>
 </body>
 </html>

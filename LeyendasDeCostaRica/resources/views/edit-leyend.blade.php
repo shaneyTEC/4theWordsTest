@@ -10,9 +10,8 @@
 <body>
 
     <div class="wrap">
+    <!-- START Top Nav / Header Block  -->
         <header class="head">
-            <a href="#" class="logo">      
-            </a>
             <nav class="main-nav">
                 <ul class="main-nav-list">
                     <li class="main-nav-item active">
@@ -35,11 +34,13 @@
                 </ul>
             </nav>
         </header>
-        <main class="content">
+    <!-- END Top Nav / Header Block  -->
+    <!-- START Edit Leyend Form / Content Block -->
+    <main class="content">
             <div class="cards">
                 <div class="card card-center">
                     <div class="card-body">
-                        <h1 >Actualizar leyenda</h1>
+                        <h1 class="card-header">Actualizar leyenda</h1>
 
                         <form action="/leyend/edit" method="post">
                             @csrf
@@ -74,8 +75,7 @@
                 </div>
             </div>
         </main>
-        <footer class="foot">
-        </footer>
+    <!-- END Edit Leyend Form / Content Block -->
     </div>
 </body>
 </html>

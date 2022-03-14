@@ -8,14 +8,18 @@ use App\Models\leyend;
 use App\Models\location;
 class LeyendController extends Controller
 {
-    //display leyends list
+    /***********************
+    ******* Displays *******
+    ***********************/
+
+    // Display leyends list
     public function index(){
         $leyends = leyend::all();
         $locations = location::all();
-        return view('leyends', ['leyends' => $leyends,], ['locations' => $locations,]);
+        return view('leyends', ['leyends' => $leyends], ['locations' => $locations]);
     }
 
-    //display specific leyend
+    // Display specific leyend
     public function show($id){
         $leyend = [];
         $leyend = leyend::find($id);
@@ -23,7 +27,7 @@ class LeyendController extends Controller
         return view('details-leyend', ['leyend' => $leyend], ['locations' => $locations,]);
     }
 
-    //display leyends list filter
+    // Display leyends list filter
     public function indexFilterbyProvince($id){
         $leyends = leyend::all()
             ->where('location', '=', $id);
@@ -32,7 +36,11 @@ class LeyendController extends Controller
         return view('leyends', ['leyends' => $leyends,], ['locations' => $locations,]);
     }
 
-    //Add a new leyend
+    /**********************
+    ******** CRUDS ********
+    **********************/
+
+    // Add a new leyend
     public function add(){
         $locations = location::all();
         return view('add-leyend', ['locations' => $locations,]);

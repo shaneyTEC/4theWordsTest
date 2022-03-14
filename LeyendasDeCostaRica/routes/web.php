@@ -41,7 +41,7 @@ Route::post('/leyend/edit', 'App\Http\Controllers\LeyendController@update');
 
 
 /***********************
-**** Dynamic routes ****
+**** Dynamic Routes ****
 ***********************/
 
 //display leyends list Filter

@@ -8,14 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div id="banner"> 
-        <img src="img/banner.png" alt="Leyendas de Costa Rica">   
-    </div>
+    <!-- START Top Barner / Header Block -->
+    <div id="banner"><img src="img/banner.png" alt="Leyendas de Costa Rica"></div>
+    <!-- END Top Barner / Header Block -->
+    <!-- START Top Nav / Header Block -->
     <header class="head main-nav">
-            <a href="#" class="logo"> 
-               <!-- <img src="https://cdn-icons.flaticon.com/png/512/5482/premium/5482886.png?token=exp=1647163585~hmac=f886a8947cfd2ac3a65a3635b4127769"
-                 alt="Leyendas de Costa Rica">      -->
-            </a>
             <nav class="main-nav">
                 <ul class="main-nav-list">
                     <li class="main-nav-item active">
@@ -38,7 +35,10 @@
                 </ul>
             </nav>
     </header>
+    <!-- END Top Nav / Header Block  -->
+    <!-- START Display Leyends Cards And Filters Nav / Content Block -->
     <div class="wrap">
+        <!-- filters nav / Content Block  -->
         <header class="head secondary-nav"> 
             <nav class="main-nav">
                 <ul class="main-nav-list">
@@ -85,17 +85,17 @@
                 </ul>
             </nav>
         </header>
+        <!-- display leyends cards / Content Block  -->
         <main class="content">
             <div class="cards">
                 @forelse ($leyends as $leyend)
                 <div class="card card-small">
                     <div class="card-body" id="leyend-titles">
-                            <h4>Leyendas</h4>
                             <div id="list" > 
                                     
-                                        <h4>Detalle de la Leyenda: <a href="/leyend/{{$leyend->id}}">{{$leyend['name']}}</a></h4>
+                                        <h4>La Leyenda: <a href="/leyend/{{$leyend->id}}">{{$leyend['name']}}</a></h4>
                                         <div id="ship">
-                                            <p>Provincia de origen:</p>
+                                            <p id="ship-title">Provincia de origen:</p>
                                                 @if ($leyend['location'] === 1)
                                                         <p class="ship-blue">Limón</p>
                                                 @elseif ($leyend['location'] === 2)
@@ -130,11 +130,16 @@
                     </footer>
                 </div>
                 @empty
-                    <p class="bg-danger text-white p-1">No hay leyendas disponibles</p>
+                <div class="card">
+                    <div class="card-body">
+                        <p>No hay leyendas disponibles.</p>
+                    </div>
+                </div>
                 @endforelse
 
             </div>
         </main>
     </div>
+    <!-- ENDE Display Leyends Cards And Filters Nav / Content Block -->
 </body>
 </html>

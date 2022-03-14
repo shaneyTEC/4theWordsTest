@@ -10,6 +10,7 @@
 <body>
 
     <div class="wrap">
+    <!-- START Top Nav / Header Block  -->
         <header class="head">
             <a href="#" class="logo">  
             </a>
@@ -35,11 +36,13 @@
                 </ul>
             </nav>
         </header>
+    <!-- END Top Nav / Header Block  -->
+    <!-- START ADD Leyend Form / Content Block -->
         <main class="content">
             <div class="cards">
                 <div class="card card-center">
                     <div class="card-body">
-                     <h1 >Nueva leyenda</h1>
+                     <h1 >Crear leyenda</h1>
 
                         <form action="/leyends"  method="post">
                             @csrf
@@ -65,8 +68,7 @@
                 </div>
             </div>
         </main>
-        <footer class="foot">
-        </footer>
+    <!-- END ADD Leyend Form / Content Block -->
     </div>
 </body>
 </html>
