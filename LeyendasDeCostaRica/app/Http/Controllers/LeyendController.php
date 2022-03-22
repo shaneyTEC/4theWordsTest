@@ -12,79 +12,74 @@ class LeyendController extends Controller
     ******* Displays *******
     ***********************/
 
-    // Display leyends list
-    public function index(){
+    // Get All Data
+
+    public function getAllleyends(){
         $leyends = leyend::all();
-        $locations = location::all();
-        return view('leyends', ['leyends' => $leyends], ['locations' => $locations]);
+        $response = [
+            'leyends' => $leyends
+        ];
+        return response()->json($response);
     }
 
-    // Display specific leyend
-    public function show($id){
-        $leyend = [];
-        $leyend = leyend::find($id);
-        $locations = location::all();
-        return view('details-leyend', ['leyend' => $leyend], ['locations' => $locations,]);
+    // Get All Data By Name Or ID
+    public function getleyendsById($id){
+        return leyend::find($id);
     }
 
-    // Display leyends list filter
-    public function indexFilterbyProvince($id){
-        $leyends = leyend::all()
-            ->where('location', '=', $id);
+    public function getAllleyendsbyProvince($location){
+        return leyend::all()
+            ->where('location', '=', $location);
+    }
 
-        $locations = location::all();
-        return view('leyends', ['leyends' => $leyends,], ['locations' => $locations,]);
+    // Display index information
+    public function index(){
+        return ([
+            'leyends' =>$this->getAllleyends()
+        ]);
+    }
+
+    // Display index information - leyend by ID /for the update form
+    public function indexFilterByID($id){
+        return ([
+            'leyend' =>$this->getleyendsById($id)
+        ]);
+    }
+
+    // Display index information - Filter leyend by province
+    public function indexFilterByProvince($location){
+        return ([
+            'leyend' =>$this->getAllleyendsbyProvince($location)
+        ]);
     }
 
     /**********************
     ******** CRUDS ********
     **********************/
 
-    // Add a new leyend
-    public function add(){
-        $locations = location::all();
-        return view('add-leyend', ['locations' => $locations,]);
-    }
-    
-    public function store(Request $request){        
-        $query = DB::table('leyends')->insert([
-            'name' => request('name'),
-            'image_url' => request('image_url'),
-            'location' => request('location'),
-            'description' => request('description'),
-        ]);
-        if($query){
-            return redirect('/');
-        }  
+    // Add a new leyend    
+    public function postLeyend(Request $request){       
+        $leyend = new Leyend(); 
+        $leyend -> content = $request->input('name', 'description', 'image_url', 'location');
+        $leyend -> save();
+        return response()->json(['leyend' => $leyend], 201);
     }
 
     // Delete specific leyend 
-    public function delete($id){
-        $query = DB::table('leyends')
-            ->where('id', $id)
-            ->delete();
-        if($query){
-            return redirect('/');
-        }
+    public function deleteLeyend($id){
+        $leyend = Leyend::find($id);
+        $leyend->delete();
+        return response()->json(['message' => 'Leyenda Eliminada']);
     }
 
     // Update specific leyend 
-    public function edit($id){
+    public function putLeyend(Request $request, $id){   
         $leyend = leyend::find($id);
-        $locations = location::all();
-        return view('edit-leyend', ['leyend' => $leyend], ['locations' => $locations]);
-    }
-
-    public function update(Request $request){   
-        $query = DB::table('leyends')
-            ->where('id', $request->input('id'))
-            ->update([
-                'name'=>$request -> input('name'),
-                'location'=>$request -> input('location'),
-                'image_url'=>$request -> input('image_url'),
-                'description'=>$request -> input('description')
-            ]);
-    
-            return redirect('/');
+        if (!$leyend) {
+            $this->postLeyend($request);
+        }
+        $leyend->content = $request->input('content');
+        $leyend->save();
+        return response()->json(['leyend' => $leyend], 200);
     }
 }
